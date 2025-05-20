@@ -68,7 +68,7 @@ function playGame() {
     for (let i = 0; i < 5; i++) {
         const humanSelection = getHumanChoice();
         const computerSelection = getComputerChoice();
-        const result = playround(humanSelection, computerSelection);
+        const result = playRound(humanSelection, computerSelection);
         console.log(result);
         console.log(`Your score: ${humanScore} - Computer score: ${computerScore}`)
     }
