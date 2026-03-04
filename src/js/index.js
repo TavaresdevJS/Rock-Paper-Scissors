@@ -1,3 +1,8 @@
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper');
+const scissorsBtn = document.querySelector('#scissors');
+const result = document.querySelector('#result');
+
 //Function to generate random number to pick computer choice
 function getComputerChoice(){
     let randomNumber = Math.floor(Math.random()*3);
@@ -20,13 +25,69 @@ function playGame() {
 
     let humanScore = 0;
     let computerScore = 0;
+    let gameOver = false;
+
+    rockBtn.addEventListener("click", () => {
+        if (gameOver) return;
+
+        const humanChoice = "rock";
+        const computerChoice = getComputerChoice();
+        const roundMsg = playRound(humanChoice, computerChoice);
+        result.innerText = `You chose ${humanChoice} and computer ${computerChoice}\n${roundMsg}` +
+    `\nScore: You ${humanScore} - ${computerScore} Computer\n`;
+
+        if (humanScore === 5) {
+            result.innerText += "\n\nCongrats Playa, you won!";
+            gameOver = true;
+        } else if (computerScore === 5) {
+            result.innerText += "\n\nThe machines conquered the world. Call John Connor";
+            gameOver = true;
+        }
+    });
+
+    paperBtn.addEventListener("click", () => {
+        if (gameOver) return;
+
+        const humanChoice = "paper";
+        const computerChoice = getComputerChoice();
+        const roundMsg = playRound(humanChoice, computerChoice);
+        result.innerText = `You chose ${humanChoice} and computer ${computerChoice}\n${roundMsg}` +
+        `\nScore: You ${humanScore} - ${computerScore} Computer\n`;
+
+        if (humanScore === 5) {
+            result.innerText += "\n\nCongrats Playa, you won!";
+            gameOver = true;
+        } else if (computerScore === 5) {
+            result.innerText += "\n\nThe machines conquered the world. Call John Connor";
+            gameOver = true;
+        }
+    });
+
+    scissorsBtn.addEventListener("click", () => {
+        if (gameOver) return;
+
+        const humanChoice = "scissors";
+        const computerChoice = getComputerChoice();
+        const roundMsg = playRound(humanChoice, computerChoice);
+        result.innerText = `You chose ${humanChoice} and computer ${computerChoice}\n${roundMsg}`+
+        `\nScore: You ${humanScore} - ${computerScore} Computer\n`;
+
+        if (humanScore === 5) {
+            result.innerText += "\n\nCongrats Playa, you won!";
+            gameOver = true;
+        } else if (computerScore === 5) {
+            result.innerText += "\n\nThe machines conquered the world. Call John Connor";
+            gameOver = true;
+        }
+    });
 
     function playRound(humanChoice, computerChoice){
-        humanChoice = humanChoice.toLowerCase();
+        
 
         //IF statement to get error message if the user enters wrong input
 
         if(
+            
             humanChoice !== 'rock' &&
             humanChoice !== 'paper' &&
             humanChoice !== 'scissors'
@@ -63,24 +124,15 @@ function playGame() {
 
     }
 
-    // 5 rounds gameplay loop
+    
 
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        const result = playRound(humanSelection, computerSelection);
-        console.log(result);
-        console.log(`Your score: ${humanScore} - Computer score: ${computerScore}`)
-    }
+    
 
-    //If and Else if statements to tell who is the winner
-    if (humanScore > computerScore) {
-        console.log("Congrats Playa, you won!");
-    } else if (humanScore < computerScore) {
-        console.group("The machines conquered the world. Call John Connor");
-    } else {
-        console.log("It's a tie!");
-    }
+
 }
+
+
+
+
 
 playGame();
